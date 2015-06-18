@@ -1,6 +1,7 @@
 require_relative("lib/game")
 require_relative("lib/room")
 
+# Rooms with end: true can end the game when you reach them
 rooms = {
   "2,0" => Room.new({ text: "You are in a room full of strangers. Naked. There is a (safe) trapdoor to the north.", end: false }),
   "2,1" => Room.new({ text: "You are in a library. You feel a breeze from the north. You smell tacos to the east.", end: false }),
@@ -20,11 +21,14 @@ puts game.current_room
 puts ""
 
 input = nil
+
+# Continue the loop until user says "exit" or game is finished.
 while input != "exit" && !game.finished?
   puts "What would you like to do?"
   print "> "
   input = gets.chomp
 
+  # Have game attempt to move and return the appropriate output
   puts game.move!(input)
   puts ""
 end

@@ -1,6 +1,8 @@
 class Game
   def initialize(rooms, starting_position)
     @rooms = rooms
+
+    # This method sets the initial position coordinates for use later
     set_position(starting_position)
   end
 
@@ -14,6 +16,7 @@ class Game
     return room.end?
   end
 
+  # Turns a position like "4,2" into the coordinates 4 and 2
   def set_position(position)
     coordinates = position.split(',')
     @current_position = position
@@ -30,6 +33,7 @@ class Game
       "W" => [ -1, 0 ]
     }
 
+    # If action isn't a direction print a message
     if !directions.include?(action)
       return "You can't do that."
     else
@@ -39,8 +43,11 @@ class Game
 
       new_position = new_x.to_s + "," + new_y.to_s
 
+      # If new position doesn't have a room print a message
       if !@rooms.has_key?(new_position)
         return "You hit your face against a wall."
+
+      # If new position has a room, set the new room
       else
         self.set_position(new_position)
         return self.current_room
