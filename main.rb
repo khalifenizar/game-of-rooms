@@ -23,6 +23,7 @@ while input != "exit"
   puts "What would you like to do?"
   print "> "
   input = gets.chomp
-  puts game.current_room
+
+  puts game.move!(input)
   puts ""
 end
