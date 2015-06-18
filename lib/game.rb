@@ -5,7 +5,13 @@ class Game
   end
 
   def current_room
-    return @rooms[@current_position]
+    room = @rooms[@current_position]
+    return room.text
+  end
+
+  def finished?
+    room = @rooms[@current_position]
+    return room.end?
   end
 
   def set_position(position)
